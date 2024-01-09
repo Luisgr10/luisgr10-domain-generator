@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello Rigo with Vanilla.js</title>
+    <title>Domain Name Generator with Vanilla.js</title>
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
@@ -14,16 +14,62 @@
   </head>
   <body>
     <div class="container-fluid text-center">
-      <h1 class="mt-5">Hello Rigo!</h1>
-      <img src="./rigo-baby.jpg" />
-      <p class="alert alert-warning mt-4">
-        If this text is <b>not</b> centered and <b>yellow</b>, you probably have
-        an error
-      </p>
-      <div class="fixed-bottom p-4">
-        Made with ❤️ by
-        <a href="https://www.4geeksacademy.com">4Geeks Academy</a>
+      <h1 class="mt-5">Domain Name Generator</h1>
+      <button
+        type="button"
+        class="btn btn-danger m-4"
+        onclick="generateDomain()"
+      >
+        Generate Random Domain
+      </button>
+    </div>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <h4
+            class="container m-4 p-4 bg-success d-flex justify-content-center rounded"
+            id="domainResult"
+          ></h4>
+        </div>
       </div>
     </div>
+    <div class="fixed-bottom p-4">
+      Made with ❤️ by
+      <a href="https://www.4geeksacademy.com">4Geeks Academy</a>
+    </div>
+
+    <script>
+      let pronoun = ["the", "our"];
+      let names = [
+        "tech",
+        "web",
+        "code",
+        "hub",
+        "cloud",
+        "byte",
+        "dev",
+        "ninja",
+        "connect",
+        "smart"
+      ];
+      let noun = ["sunshine", "mountain", "ocean", "friendship", "book"];
+
+      function generateDomain() {
+        const randomWord1 = pronoun[Math.floor(Math.random() * pronoun.length)];
+        const randomWord2 = names[Math.floor(Math.random() * names.length)];
+        const randomWord3 = noun[Math.floor(Math.random() * noun.length)];
+
+        const randomExtension = getRandomExtension();
+        const domain = `${randomWord1}${randomWord2}${randomWord3}.${randomExtension}`;
+        document.getElementById(
+          "domainResult"
+        ).innerText = `Your domain is: ${domain}`;
+      }
+
+      function getRandomExtension() {
+        const extensions = ["com", "net", "org", "es", "ve"];
+        return extensions[Math.floor(Math.random() * extensions.length)];
+      }
+    </script>
   </body>
 </html>
