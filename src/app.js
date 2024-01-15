@@ -19,26 +19,39 @@ window.onload = function() {
     "connect",
     "smart"
   ];
-  let noun = ["sunshine", "mountain", "ocean", "friendship", "book"];
+  const extensions = ["com", "net", "org", "es", "ve"];
 
   document
     .getElementById("generateButton")
-    .addEventListener("click", generateDomain);
+    .addEventListener("click", generateDomains);
 
-  function generateDomain() {
-    const randomWord1 = pronoun[Math.floor(Math.random() * pronoun.length)];
-    const randomWord2 = names[Math.floor(Math.random() * names.length)];
-    const randomWord3 = noun[Math.floor(Math.random() * noun.length)];
+  function generateDomains() {
+    let pronounExtension = pronoun.length;
 
-    const randomExtension = getRandomExtension();
-    const domain = `${randomWord1}${randomWord2}${randomWord3}.${randomExtension}`;
-    document.getElementById(
-      "domainResult"
-    ).innerText = `Your domain is: ${domain}`;
+    let extensionsLoop = extensions.length;
+    let listOfDomains = [];
+
+    for (let i = 0; i < names.length; i++) {
+      const completeDomain =
+        pronoun[i % pronounExtension] +
+        names[i] +
+        "." +
+        extensions[i % extensionsLoop];
+      listOfDomains.push(completeDomain);
+    }
+
+    displayResults(listOfDomains);
   }
 
-  function getRandomExtension() {
-    const extensions = ["com", "net", "org", "es", "ve"];
-    return extensions[Math.floor(Math.random() * extensions.length)];
+  function displayResults(domains) {
+    let resultsContainer = document.getElementById("results");
+
+    resultsContainer.innerHTML = "";
+
+    domains.forEach(domain => {
+      let domainElement = document.createElement("p");
+      domainElement.textContent = domain;
+      resultsContainer.appendChild(domainElement);
+    });
   }
 };
