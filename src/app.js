@@ -31,10 +31,10 @@ window.onload = function() {
     let extensionsLoop = extensions.length;
     let listOfDomains = [];
 
-    for (let i = 0; i < names.length; i++) {
+    for (let i = 0; i < 15; i++) {
       const completeDomain =
         pronoun[i % pronounExtension] +
-        names[i] +
+        names[Math.floor(Math.random() * names.length)] +
         "." +
         extensions[i % extensionsLoop];
       listOfDomains.push(completeDomain);
